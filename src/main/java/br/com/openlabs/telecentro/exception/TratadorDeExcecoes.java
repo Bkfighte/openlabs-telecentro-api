@@ -56,9 +56,12 @@ public class TratadorDeExcecoes {
     public ResponseEntity<ErroResposta> tratarPersistencia(PersistenciaException e, HttpServletRequest requisicao) {
         return switch (e.getCodigoOracle()) {
             case 1 -> responder(HttpStatus.CONFLICT,
-                    "Já existe um registro com esse valor único (ex.: e-mail repetido).", requisicao);
-            case 2290, 1400 -> responder(HttpStatus.BAD_REQUEST,
-                    "Os dados não respeitam as regras do banco: campo obrigatório vazio ou valor fora do permitido.", requisicao);
+                    "Já existe um registro igual: e-mail ou faixa de rede repetidos, ou o aluno já começou esse lab.",
+                    requisicao);
+            // 2290 = CHECK, 1400 = NOT NULL, 1438 = número grande demais, 12899 = texto maior que a coluna
+            case 2290, 1400, 1438, 12899 -> responder(HttpStatus.BAD_REQUEST,
+                    "Os dados não respeitam as regras do banco: campo obrigatório vazio, valor fora do permitido ou texto longo demais.",
+                    requisicao);
             case 2291 -> responder(HttpStatus.NOT_FOUND,
                     "Um registro relacionado não existe. Confira os ids informados.", requisicao);
             case 2292 -> responder(HttpStatus.CONFLICT,
