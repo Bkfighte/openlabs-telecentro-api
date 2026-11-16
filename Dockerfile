@@ -11,4 +11,5 @@ WORKDIR /app
 COPY --from=build /app/target/openlabs-telecentro-api-1.0.0.jar app.jar
 # O Render informa a porta na variável PORT; o application.properties já lê essa variável.
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# O servidor do Render usa UTC; sem isto, um cadastro feito depois das 21h em São Paulo ganharia a data de amanhã.
+ENTRYPOINT ["java", "-Duser.timezone=America/Sao_Paulo", "-jar", "app.jar"]
