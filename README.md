@@ -63,7 +63,7 @@ br.com.openlabs.telecentro
 Documentação em `docs/`:
 
 - [`docs/endpoints.md`](docs/endpoints.md): tabela de endpoints, com exemplos de requisição e resposta.
-- [`docs/diagrama-classes.puml`](docs/diagrama-classes.puml): diagrama de classes em PlantUML, com os PNGs gerados ([visão geral](docs/diagrama-classes.png) e [domínio](docs/diagrama-classes-dominio.png)).
+- [`docs/diagrama-classes.puml`](docs/diagrama-classes.puml): diagramas de classes em UML ([domínio](docs/diagrama-classes-dominio.png), [camadas](docs/diagrama-classes.png) e [DTOs e exceções](docs/diagrama-classes-dto-exception.png)).
 - [`docs/prints/`](docs/prints): prints do Swagger e do deploy no Render.
 
 ## Como executar
